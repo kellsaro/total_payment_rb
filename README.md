@@ -48,10 +48,13 @@ One (or more) file(s) with the name of an employee and the schedule they worked,
 
 Each line of the file is expected in the format:
 
+```
 <ID>=<DAY><HOUR1>-<HOUR2>[,<DAY><HOUR1>-<HOUR2>]...
+```
 
 where:
 
+```
 <ID> : identifies the worker, ex: RENE
 
 <DAY>: upcased first 2 letters of the day: MO, TU, WE, TH, FR, SA, SU 
@@ -59,7 +62,7 @@ where:
 <HOUR1>: hour in the range 00:00 to 23:59, in format h:m with 0 <= h <= 23 and  0 <= m <= 59
 
 <HOUR2>: hour(see <HOUR1> for more) greater than or equals to <HOUR1>
-
+```
 
 Example:
 
