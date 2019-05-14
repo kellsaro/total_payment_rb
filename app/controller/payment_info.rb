@@ -5,4 +5,10 @@ class PaymentInfo
     @name = name
     @ammount = ammount
   end
+
+  def ==(other)
+    return false if other.nil? || !other.is_a?(PaymentInfo)
+
+    name == other.name && ammount == other.ammount
+  end
 end
