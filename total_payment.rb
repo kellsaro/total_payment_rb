@@ -14,7 +14,7 @@ class TotalPayment
   def main
     input_files = ARGV
 
-    if !input_files.empty?
+    if !input_files.nil? && !input_files.empty?
       input_files.each { |file_name| process_file(file_name) }
     else
       printHelp
