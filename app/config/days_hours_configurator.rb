@@ -2,6 +2,8 @@ require_relative "../model/hour"
 require_relative "../model/day"
 require_relative "../model/hours_range"
 
+# Defines and performs the DSL used for the
+# configuration of days, hours ranges and payments.
 class DaysHoursConfigurator
   attr_reader :conf
 
@@ -9,10 +11,13 @@ class DaysHoursConfigurator
     @conf = {}
   end
 
+  # Returns the configuration hash
   def self.get_configuration
     @@conf.conf.clone.freeze
   end
 
+  # Returns an array of hour with the max hour
+  # of each hours range configured for the day
   def self.max_hours(day)
     h = self.get_configuration
     schedule = h.collect { |k, v| v.keys if k.include?(day.to_sym) }
@@ -28,12 +33,19 @@ class DaysHoursConfigurator
     max_hours.sort
   end
 
+  # Returns the configuration hash
+  # An instance of DaysHourConfigurator
+  # is passed to the block.
   def self.configure(&block)
     @@conf = DaysHoursConfigurator.new
     yield @@conf
     @@conf.conf.freeze
   end
 
+  # Performs the DSL for the definition
+  # of the configuration.
+  # Assigns to each day the corresponding
+  # configuration hash of hours range mapping to payment by hour
   def method_missing(name, *args)
     name = name.to_s
     raise NoMethodError, "undefined method '#{name}' for #{self}" if !name.end_with?("=")

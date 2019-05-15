@@ -3,12 +3,19 @@ require_relative "get_days_hours_configuration_service"
 require_relative "get_max_hours_configuration_service"
 require "pry"
 
+# Service for retrieving the payment
+# for a worked schedule string line.
 class TotalPaymentService
   def initialize
     @days_hours_cnf = GetDaysHoursConfigurationService.new.exec
   end
 
+  # Returns the payment for the worked schedule string.
+  # The payment is a float rounded to 2 decimal places.
   def exec(worked_schedule)
+    # The worked_scheduled is formated to a Hash
+    # where each key is day symbol (:mo, ..)
+    # and each value is an Array of string with range of hours
     group_by_day = worked_schedule.downcase
                                   .split(",")
                                   .map { |d| [d[0, 2].to_sym, d[2..-1].strip] }
@@ -16,7 +23,10 @@ class TotalPaymentService
 
     group_by_day.each { |k, v| group_by_day[k] = v.flatten.delete_if { |v1| v1.is_a? Symbol } }
 
+    # For each day and array of string of range of hours computes the payment
     p = group_by_day.sum do |day, schedules|
+
+      # For each string with one range of hours computes the payment
       schedules.sum { |schedule| compute_ammount(day, schedule) }
     end
 
@@ -25,6 +35,8 @@ class TotalPaymentService
 
   private
 
+  # For a day and a string representing a range of hours computes
+  # the corresponding payment
   def compute_ammount(day, schedule)
     range = HoursRange.new(schedule)
 

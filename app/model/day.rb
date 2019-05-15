@@ -1,9 +1,23 @@
+# Model for representing a day
 class Day
   @@days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].freeze
   @@days_as_sym = @@days.each.map { |d| d[0, 2].to_sym }.freeze
 
   attr_reader :day
 
+  # Allows the initialization of a new Day object
+  # given a Day object, a day symbol or a day string
+  # Params:
+  #   d : Day | Symbol | String
+  # Example:
+  #   (irb)> d1 = Day.new("monday")
+  #   => monday
+  #   (irb)> d2 = Day.new(d1)
+  #   => monday
+  #   (irb)> d3 = Day.new(:mo)
+  #   => monday
+  #   (irb)> d4 = Day.new("monday")
+  #   => monday
   def initialize(d)
     raise ArgumentError, "Invalid argument '#{d}'" if d.nil?
 
@@ -21,20 +35,28 @@ class Day
     end
   end
 
-  def self.all
-    @@days
-  end
-
-  def self.all_as_sym
-    @@days_as_sym
-  end
-
+  # Allows linguistic sugar for creating a day object
+  # Example:
+  #   (irb)> d1 = Day.monday
+  #   => monday
+  #   (irb)> d2 = Day.sunday
+  #   => sunday
   def self.method_missing(name, *args)
     return Day.new(name.to_s) unless !@@days.include?(name.to_s)
 
     raise NoMethodError, "undefined method '#{name}' for Day:Class"
   end
 
+  # Returns the Day after this
+  # Example:
+  #   (irb)> d1 = Day.monday
+  #   => monday
+  #   (irb)> d2 = d1.succ
+  #   => tuesday
+  #   (irb)> d3 = Day.new(:su)
+  #   => sunday
+  #   (irb)> d4 = d3.succ
+  #   => monday
   def succ
     Day.new @@days[(@@days.find_index { |d| d == day } + 1) % 7]
   end
