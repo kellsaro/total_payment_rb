@@ -65,7 +65,7 @@ class HoursRange
   #   pry(main)> HoursRange.new("05:04-23:08").split_by_max_hours(["00:00", "09:00", "18:00", "23:59"])
   #   => [05:04-09:00, 09:01-18:00, 18:01-23:08]
   def split_by_max_hours(sh_array)
-    return self if sh_array.nil? || sh_array.empty?
+    return [self] if sh_array.nil? || sh_array.empty?
 
     sh_array = sh_array.map { |sh| hour = Hour.new(sh) }.sort
 

@@ -42,6 +42,8 @@ class TotalPaymentService
 
     ranges = range.split_by_max_hours(max_hours)
 
+    # returns an array where array[0] is the array of days and
+    # array[1] is the hash with HoursRange mapping to quotation
     quotation_conf = @days_hours_cnf.find { |k, v| k.include?(day) }
     return 0 if quotation_conf.nil? || quotation_conf.empty?
 
