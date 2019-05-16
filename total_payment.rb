@@ -42,7 +42,7 @@ class TotalPayment
 
   # Process a line and prints the result.
   def process_worked_schedule(line)
-    payment = @total_payment_controller.total_payment(line)
+    payment = @total_payment_controller.show(line)
     "The amount to pay #{payment.name} is: #{"%.2f" % payment.ammount} USD"
   end
 

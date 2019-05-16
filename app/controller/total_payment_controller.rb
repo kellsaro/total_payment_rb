@@ -5,7 +5,7 @@ class TotalPaymentController
 
   # Given a string line with id and worked schedule information
   # returns an PaymentInfo object with the id and total payment calculated.
-  def total_payment(worked_schedule)
+  def show(worked_schedule)
     name, schedule = worked_schedule.split("=")
 
     total_payment_service = TotalPaymentService.new
