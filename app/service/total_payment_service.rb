@@ -42,14 +42,14 @@ class TotalPaymentService
 
     ranges = range.split_by_max_hours(max_hours)
 
-    cotization_conf = @days_hours_cnf.find { |k, v| k.include?(day) }
-    return 0 if cotization_conf.nil? || cotization_conf.empty?
+    quotation_conf = @days_hours_cnf.find { |k, v| k.include?(day) }
+    return 0 if quotation_conf.nil? || quotation_conf.empty?
 
     ammount = 0.0
     ranges.each do |r|
-      cot = cotization_conf[1].find { |k, v| k.include?(r) }
-      if !cot.nil? && !cot.empty?
-        ammount += (cot[1] * r.to_minutes).to_f / 60
+      quot = quotation_conf[1].find { |k, v| k.include?(r) }
+      if !quot.nil? && !quot.empty?
+        ammount += (quot[1] * r.to_minutes).to_f / 60
       end
     end
 
