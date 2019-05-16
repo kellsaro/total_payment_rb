@@ -11,7 +11,7 @@ class TotalPaymentService
   end
 
   # Returns the payment for the worked schedule string.
-  # The payment is a float rounded to 2 decimal places.
+  # The payment is a float.
   def exec(worked_schedule)
     # The worked_scheduled is formated to a Hash
     # where each key is day symbol (:mo, ..)
@@ -24,13 +24,11 @@ class TotalPaymentService
     group_by_day.each { |k, v| group_by_day[k] = v.flatten.delete_if { |v1| v1.is_a? Symbol } }
 
     # For each day and array of string of range of hours computes the payment
-    p = group_by_day.sum do |day, schedules|
+    group_by_day.sum do |day, schedules|
 
       # For each string with one range of hours computes the payment
       schedules.sum { |schedule| compute_ammount(day, schedule) }
     end
-
-    p
   end
 
   private
