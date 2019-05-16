@@ -85,7 +85,7 @@ The amount to pay ASTRID is: 85.00 USD
 
 ### Prerequisites
 
-For running the application Ruby version 2.5.1 at least
+For running the application is needed Ruby version 2.5.1 or higher
 
 ### Installing
 
@@ -95,7 +95,7 @@ Download or clone this repository
 git clone https://github.com/kellsaro/total_payment_rb.git
 ```
 
-Go to total_payment_rb folder an run
+Go to total_payment_rb folder and run
 
 ```
 cd total_payment_rb
