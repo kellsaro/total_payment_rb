@@ -30,7 +30,7 @@ class TotalPaymentService
       schedules.sum { |schedule| compute_ammount(day, schedule) }
     end
 
-    p.round(2)
+    p
   end
 
   private

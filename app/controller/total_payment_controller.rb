@@ -11,6 +11,6 @@ class TotalPaymentController
     total_payment_service = TotalPaymentService.new
     ammount = total_payment_service.exec(schedule)
 
-    PaymentInfo.new(name, ammount)
+    PaymentInfo.new(name, ammount.round(2))
   end
 end
