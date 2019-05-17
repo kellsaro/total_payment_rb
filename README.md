@@ -139,5 +139,5 @@ ruby test/controller/*.rb
 
 ## Acknowledgments
 
-* **Astrid Schneider** from IOET, who propose the challenge
+* **Astrid Schneider** from IOET, who proposed the challenge
 
