@@ -132,10 +132,9 @@ ruby test/controller/*.rb
 
 * [Ruby](https://www.ruby-lang.org/en/) - The programming language
 
-## Authors
+## Author
 
-* **Maykell Sánchez Romero** - *Initial work* - [total_payment_rb](https://github.com/kellsaro/total_payment_rb.git)
-
+* **Maykell Sánchez Romero** 
 
 ## Acknowledgments
 
